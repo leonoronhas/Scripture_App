@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Scripture App</string>
+    <string name="edit_book">Enter book</string>
+    <string name="edit_chapter">Enter chapter</string>
+    <string name="edit_verse">Enter verse (s)</string>
+    <string name="buttonSend">Go!</string>
+</resources>
