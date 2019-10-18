@@ -6,4 +6,5 @@
     <string name="buttonSend">Go!</string>
     <string name="display_scripture">Received intent with</string>
     <string name="save_button">SAVE</string>
+    <string name="load_button">LOAD</string>
 </resources>
