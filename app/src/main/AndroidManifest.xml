@@ -12,6 +12,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".DisplayScripture"
                   android:parentActivityName=".MainActivity"></activity>
+
+        <!-- The meta-data tag is required if you support API level 15 and lower -->
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

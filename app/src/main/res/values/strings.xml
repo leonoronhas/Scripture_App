@@ -4,4 +4,6 @@
     <string name="edit_chapter">Enter chapter</string>
     <string name="edit_verse">Enter verse (s)</string>
     <string name="buttonSend">Go!</string>
+    <string name="display_scripture">Received intent with</string>
+    <string name="save_button">SAVE</string>
 </resources>
