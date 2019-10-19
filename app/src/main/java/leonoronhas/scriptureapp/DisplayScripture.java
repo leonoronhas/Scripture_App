@@ -25,4 +25,6 @@ public class DisplayScripture extends AppCompatActivity {
 
         textView.setText(message + " " + message2 + ":" + message3);
     }
+
+
 }
