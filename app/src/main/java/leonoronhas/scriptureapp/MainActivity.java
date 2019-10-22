@@ -8,18 +8,25 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Where the input will be displayed
     public final static String EXTRA_book_input = "leonoronhas.scriptureapp.book_input";
     public final static String EXTRA_chapter_input = "leonoronhas.scriptureapp.chapter_input";
     public final static String EXTRA_verse_input = "leonoronhas.scriptureapp.verse_input";
+
+    //Where the input will be saved
+    public final static String SAVED_book_input = "leonoronhas.scriptureapp.book_input";
+    public final static String SAVED_chapter_input = "leonoronhas.scriptureapp.chapter_input";
+    public final static String SAVED_verse_input = "leonoronhas.scriptureapp.verse_input";
+
+    //Where all files/inputs will be saved for the SharedPreferences
     public final static String FILE_NAME = "DEFAULT NAME";
 
-    EditText bookId;
-    EditText chapterId;
-    EditText verseId;
+    private EditText bookId;
+    private EditText chapterId;
+    private EditText verseId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +36,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendScripture(View view) {
         Intent intent = new Intent(this, DisplayScripture.class);
-        bookId = findViewById(R.id.editBook);
-        chapterId = findViewById(R.id.editChapter);
-        verseId = findViewById(R.id.editVerse);
 
-        String book_input1 = bookId.getText().toString();
-        String chapter_input = chapterId.getText().toString();
-        String verse_input = verseId.getText().toString();
+        //Get input according to the input field/EditText
+        EditText book = findViewById(R.id.editBook);
+        EditText chapter = findViewById(R.id.editChapter);
+        EditText verse = findViewById(R.id.editVerse);
 
+        //Converting input to String
+        String book_input1 = book.getText().toString();
+        String chapter_input = chapter.getText().toString();
+        String verse_input = verse.getText().toString();
 
+        //Sending input to UI Thread
         intent.putExtra(EXTRA_book_input, book_input1);
         intent.putExtra(EXTRA_chapter_input, chapter_input);
         intent.putExtra(EXTRA_verse_input, verse_input);
@@ -45,16 +55,23 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Load saved input
     public void loadScripture(View view) {
         SharedPreferences sharedPreferences = this.getSharedPreferences(MainActivity.FILE_NAME, Context.MODE_PRIVATE);
 
-        String book = sharedPreferences.getString(EXTRA_book_input, "");
-        String chapter = sharedPreferences.getString(EXTRA_chapter_input, "");
-        String verse = sharedPreferences.getString(EXTRA_verse_input, "");
+        //Retrieve the input
+        String book = sharedPreferences.getString(MainActivity.SAVED_book_input, "No input found"); //s1 = default value in case of nothing to show
+        String chapter = sharedPreferences.getString(MainActivity.SAVED_chapter_input, "No input found");
+        String verse = sharedPreferences.getString(MainActivity.SAVED_verse_input, "No input found");
 
+        //Populate the input fields
+        bookId = findViewById(R.id.editBook);
+        chapterId = findViewById(R.id.editChapter);
+        verseId = findViewById(R.id.editVerse);
+
+        //Get input and display to appropriate field
         bookId.setText(book);
         chapterId.setText(chapter);
         verseId.setText(verse);
-
     }
 }
